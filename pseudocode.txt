@@ -1,0 +1,49 @@
+HTML
+    1. Create form
+        a. Add text fields
+            - Starting point
+            - Destination point
+        b. Add submit button
+    2. Create duration field
+    3. Create playlist div
+    4. Incorporate classes and IDs to work with JavaScript
+    5. Link to Bootstrap CSS and JavaScript files
+    6. Link to JavaScript file
+    7. Link to CSS file
+    8. Link to jQuery
+
+JavaScript
+    1. Create submit button click function
+        a. Store input from forms in variables
+        b. Perform data validation for input
+            - Display error message for invalid input
+        c. Clear fields upon button click
+    2. Make Google Maps API ajax call
+        a. Create query URL with API key
+        b. Store applicable data from response in variables
+        c. Handle errors
+    3. Make Spotify API ajax call
+        a. Create query URL with API key
+        b. Store trip duration from response in variables
+        c. Handle errors
+    4. Create playlist that is the same length as trip duration
+        a. Store songs in playlist array sorted by length
+        b. Add song lengths together
+        c. Subtract song lengths from trip duration
+        d. Store leftover time in variable
+            - If leftover time is 0-2.5 minutes:
+                - Remove one song
+                - Calculate new leftover time
+        e. Find song(s) of length of leftover time and add to array      
+    5. Display trip duration in proper field
+    6. Display playlist in playlist div
+
+Nice to have:
+- Display Google map
+- Display actual Spotify playlist (album art, play/pause, etc.)
+    - Go through Google Maps trip & give directions while playlist is playing
+    - Take into account ad times
+- Allow genre, artist filters
+- Delete a song and find another of same length
+- Refresh current playlist
+- Provide multiple playlist options
