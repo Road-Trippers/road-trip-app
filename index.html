@@ -13,20 +13,55 @@
 <body>
 
     <div class="container">
-        <form>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Starting point</label>
-                <input type="text" class="form-control" id="startingPoint" aria-describedby="emailHelp"
-                    placeholder="latitude, longitude">
+    
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Road Trip App</h1>
             </div>
-            <div class="form-group">
+        </div>
+
+   <form>
+        <div class="row">
+
+            <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Starting point</label>
+                        <input type="text" class="form-control" id="startingPoint" aria-describedby="emailHelp"
+                        placeholder="latitude, longitude">
+                    </div>
+            </div>
+        
+       
+            <div class="col-md-4">
+                <div class="form-group">
                 <label for="exampleInputPassword1">Destination</label>
                 <input type="text" class="form-control" id="endPoint" placeholder="latitude, longitude">
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Get Playlist!</button>
-        </form>
 
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">Get Playlist!</button>
+            </div>
+
+        </div>
+
+    </form>
+     
+    <hr>
+
+    <div class="row">
+
+        <div class="col-md-8">
+            <h3>Your Playlist!</h3>
+        </div>    
+
+        <div class="col-md-4">
+            <div id="trip-duration">(where the duration for the trip will appear)</div>
+        </div>
+        
     </div>
+
+<div id="playlist-div">(this is where the playlist that's generated will appear)</div>
 
     <!-- jQuery -->
     <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
