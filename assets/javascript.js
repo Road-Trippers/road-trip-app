@@ -49,7 +49,6 @@ document
 		// Call function to make Deezer API call; await until API call is done and store response in songs variable
 		var playlistDiv = document.getElementById("playlist-div");
 		var playlist = [];
-		debugger;
 		var playlistData = await createPlaylist(
 			playlist,
 			tripDuration,
@@ -57,8 +56,9 @@ document
 			createDeezerUrl(0)
 		);
 		var playlist = playlistData.playlist;
-		var playlistDuration = playlistData.duration;
+		var playlistDuration = 0;
 
+		playlist.forEach((e) => (playlistDuration += Number(e.duration)));
 		for (let index = 0; index < playlist.length; index++) {
 			const element = playlist[index];
 			var songDiv = document.createElement("p");
