@@ -52,7 +52,7 @@ document
 
     // Call function to make Deezer API call; await until API call is done and store response in songs variable
     var playlistDiv = document.getElementById("playlist-div");
-    var songs = await getSongs();
+    var songs = await createPlaylist(tripDuration);
 
     for (let index = 0; index < songs.length; index++) {
       const element = songs[index];
@@ -82,11 +82,26 @@ async function getSongs() {
     songs.push({ title: e.title, artist: e.artist.name, duration: e.duration });
   }
 
-  var totalDuration = 0;
-  songs.forEach((e) => {
-    totalDuration += Number(e.duration);
-  });
   return songs;
+}
+
+async function createPlaylist(tripDuration) {
+  //  This function creates the playlist (25)
+  // Get a list of 25 songs
+  // add songs to the playlist until it reaches the desired length
+  // create an empty array before a while loop
+  // while the total duration is less than the trip duration, continue adding songs
+  // return the final array
+  var songs = await getSongs();
+  console.log(songs);
+  var playlist = [];
+  var runningTotal = 0;
+  for (let i = 0; i < songs.length && runningTotal < tripDuration; i++) {
+    playlist.push(songs[i]);
+    runningTotal += songs[i].duration;
+  }
+  console.log(playlist);
+  return playlist;
 }
 
 // API call function
