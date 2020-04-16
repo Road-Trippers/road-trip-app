@@ -51,8 +51,17 @@ document
     tripDurationHTML.textContent = Math.floor(minutes) + " minutes";
 
     // Call function to make Deezer API call; await until API call is done and store response in songs variable
+    var playlistDiv = document.getElementById("playlist-div");
     var songs = await getSongs();
-    console.log(songs);
+
+    for (let index = 0; index < songs.length; index++) {
+      const element = songs[index];
+      var songDiv = document.createElement("p");
+      songDiv.textContent = element.title;
+      playlistDiv.appendChild(songDiv);
+    }
+
+    //console.log(songs);
   });
 
 async function getSongs() {
@@ -68,7 +77,7 @@ async function getSongs() {
   var songs = [];
 
   // Loop through API response array and add applicable song data to new songs array
-  for (var i = 0; i < deezerResponse.data; i++) {
+  for (var i = 0; i < deezerResponse.data.length; i++) {
     var e = deezerResponse.data[i];
     songs.push({ title: e.title, artist: e.artist.name, duration: e.duration });
   }
