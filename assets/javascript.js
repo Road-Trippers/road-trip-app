@@ -48,7 +48,14 @@ document
 
 		// Call function to make Deezer API call; await until API call is done and store response in songs variable
 		var playlistDiv = document.getElementById("playlist-div");
-		var playlistData = await createPlaylist(tripDuration);
+		var playlist = [];
+		debugger;
+		var playlistData = await createPlaylist(
+			playlist,
+			tripDuration,
+			0,
+			createDeezerUrl(0)
+		);
 		var playlist = playlistData.playlist;
 		var playlistDuration = playlistData.duration;
 
@@ -68,14 +75,12 @@ document
 			"Playlist Duration: " + (playlistDuration / 60).toFixed(2) + " minutes";
 	});
 
-async function getSongs() {
+async function getSongs(URL) {
 	// Create query URL for Deezer API call
-	var deezerQueryURL =
-		"https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem";
+	var deezerQueryURL = URL;
 
 	// Make Deezer API call; await until API call is done and store response
 	var deezerResponse = await apiCall(deezerQueryURL);
-	console.log(deezerResponse);
 
 	// Create array to hold song data
 	var songs = [];
@@ -85,29 +90,32 @@ async function getSongs() {
 		var e = deezerResponse.data[i];
 		songs.push({ title: e.title, artist: e.artist.name, duration: e.duration });
 	}
-
-	return songs;
+	return { songs: songs, next: deezerResponse.next };
 }
 
-async function createPlaylist(tripDuration) {
-	//  This function creates the playlist (25)
-	// Get a list of 25 songs
-	// add songs to the playlist until it reaches the desired length
-	// create an empty array before a while loop
-	// while the total duration is less than the trip duration, continue adding songs
-	// return the final array
-	var songs = await getSongs();
-	console.log(songs);
-	var playlist = [];
-	var runningTotal = 0;
-	for (let i = 0; i < songs.length && runningTotal < tripDuration; i++) {
-		playlist.push(songs[i]);
-		runningTotal += songs[i].duration;
+async function createPlaylist(playlist, tripDuration, runningTotal, URL) {
+	var songs = await getSongs(URL);
+
+	for (let i = 0; i < songs.songs.length && runningTotal < tripDuration; i++) {
+		playlist.push(songs.songs[i]);
+		runningTotal += songs.songs[i].duration;
 	}
-	console.log(playlist);
+	if (runningTotal < tripDuration) {
+		await createPlaylist(
+			playlist,
+			tripDuration,
+			runningTotal,
+			createDeezerUrl(playlist.length)
+		);
+	}
+
 	return { playlist: playlist, duration: runningTotal };
 }
-
+function createDeezerUrl(index) {
+	return (
+		"https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem&index=" + index
+	);
+}
 // API call function
 function apiCall(queryURL) {
 	return new Promise((resolve, reject) => {
