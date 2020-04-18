@@ -25,21 +25,30 @@
    <form>
         <div class="row">
 
-            <div class="col-md-4">
+             <div class="col-md-4">
+                <div class="form-group">
+                    <label for="artist">Preferred Artist</label>
+                    <input type="text" class="form-control" id="artist" 
+                    placeholder="artist">
+                </div>
+        </div>
+        
+        <div class="col-md-4">
                     <div class="form-group">
                         <label for="starting point">Starting point</label>
                         <input type="text" class="form-control" id="startingPoint" 
                         placeholder="latitude, longitude">
                     </div>
             </div>
-        
-       
+
             <div class="col-md-4">
                 <div class="form-group">
                 <label for="ending point">Destination</label>
                 <input type="text" class="form-control" id="endPoint" placeholder="latitude, longitude">
                 </div>
             </div>
+
+     
 
             <div class="col-md-4">
                 <button type="submit" class="btn btn-primary" id="submit-button">Get Playlist!</button>
