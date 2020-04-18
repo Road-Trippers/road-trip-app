@@ -141,7 +141,10 @@ async function getSongs() {
 
 async function createPlaylist(tripDuration, playlistDuration) {
 	var songs = await getSongs();
-
+	if (songs.length < 1) {
+		console.log("not enough songs available");
+		return playlistDuration;
+	}
 	for (let i = 0; i < songs.length && playlistDuration < tripDuration; i++) {
 		if (!playlist.find((e) => e.title === songs[i].title)) {
 			playlist.push(songs[i]);
