@@ -1,15 +1,41 @@
 // Create object to hold user input of latitude/longitude coordinates
-var input = {
-  starting: { latitude: 0, longitude: 0 },
-  destination: { latitude: 0, longitude: 0 },
-};
+var input = {};
 
 var playlist = [];
 var playlistDiv = document.getElementById("playlist-div");
 var tripDurationHTML = document.getElementById("trip-duration");
 var playlistDurationHTML = document.getElementById("playlist-duration");
 
-debugger;
+//to connect to library to convertaddress to lat/long
+var placesStart = places({
+  appId: "plRUJ22SXG0U",
+  apiKey: "7621bbb9b57f4f8ddb04604ff8d24a00",
+  container: document.querySelector("#startingPoint"),
+});
+
+var placesEnd = places({
+  appId: "plRUJ22SXG0U",
+  apiKey: "7621bbb9b57f4f8ddb04604ff8d24a00",
+  container: document.querySelector("#endPoint"),
+});
+
+//on event - clicking 'get playlist' button, grab lat/long from variables where stored
+placesStart.on("clear", function (suggestion) {
+  input.starting = "";
+});
+
+placesEnd.on("clear", function (suggestion) {
+  input.destination = "";
+});
+
+placesStart.on("change", function (suggestion) {
+  input.starting = suggestion.suggestion.latlng;
+});
+
+placesEnd.on("change", function (suggestion) {
+  input.destination = suggestion.suggestion.latlng;
+});
+
 // Grab any existing data from local storage
 if (localStorage.getItem("playlist") !== null) {
   var tripDuration = JSON.parse(localStorage.getItem("trip-duration"));
@@ -47,30 +73,21 @@ document
     // Prevent page from refreshing upon button click
     event.preventDefault();
 
-    // Get user input from fields
-    var startingPoint = document.getElementById("startingPoint").value;
-    var destination = document.getElementById("endPoint").value;
-
-    // Store user input coordinates as an array split at comma [latitude, longitude]
-    startingPoint = startingPoint.split(",");
-    destination = destination.split(",");
-
-    // Store user input that is stored in array in the object created above
-    input = {
-      starting: { latitude: startingPoint[0], longitude: startingPoint[1] },
-      destination: { latitude: destination[0], longitude: destination[1] },
-    };
+    //if starting or destination fields are empty, exit the function
+    if (!input.starting || !input.destination) {
+      return;
+    }
 
     // Create Mapbox query URL based on user input
     var mapBoxQueryURL =
       "https://api.mapbox.com/directions/v5/mapbox/driving/" +
-      input.starting.longitude +
+      input.starting.lng +
       "%2C" +
-      input.starting.latitude +
+      input.starting.lat +
       "%3B" +
-      input.destination.longitude +
+      input.destination.lng +
       "%2C" +
-      input.destination.latitude +
+      input.destination.lat +
       "?alternatives=true&geometries=geojson&steps=true&access_token=pk.eyJ1Ijoia2F5Z3JvZyIsImEiOiJjazh2dnBueXgwMnltM3ByejY2Y3hlM25kIn0.jyN4BskKiVdTLxWbxcPWsw";
 
     // Call function to make Mapbox API call; await until API call is done and store response in mapResponse variable
