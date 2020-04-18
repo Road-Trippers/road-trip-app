@@ -4,12 +4,16 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Roadtrip!</title>
-		<link rel="stylesheet" href="assets/styles.css" />
+		<!-- bootstrap Reference -->
 		<link
 			rel="stylesheet"
 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-			crossorigin="anonymous"/>
+            crossorigin="anonymous"/>
+            <link rel="stylesheet" href="/assets/styles.css">
+            <!-- Firebase References -->
+        <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 	</head>
 
 <body>
@@ -46,8 +50,8 @@
                   <div class="container">
                      <div class="row">
                       
-                      <div class="col-md-12 mb-4 white-text text-center">
-                        <h1 class="h1-reponsive text-white text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Road Trip</strong></h1>
+                      <div class="col-md-12 mb-4 text-yellow  text-center">
+                        <h1  class="h1-reponsive text-yellow text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Road Trip</strong></h1>
                         <hr class="hr-light my-4 wow fadeInDown">
                         <h5 class="text-uppercase mb-4 text-white wow fadeInDown" ><strong>Changing the way you go places</strong></h5>
                       </div>
@@ -58,13 +62,7 @@
                                 placeholder="artist">
                             </div>
                         </div>
-                        <div class="col-md-4 text-white">
-                            <div class="form-group">
-                                <label for="recent-artists">Recent Artists</label>
-                                <input type="text" class="form-control" id="recent-artists" 
-                                placeholder="recent-artists">
-                            </div>
-                        </div>
+                                              
                       <div class="form-group text-uppercase mb-4 text-white wow fadeInDown">
                         <label for="Starting Point">I'm leaving from...</label>
                         <input type="text" class="form-control" id="startingPoint"
@@ -76,7 +74,6 @@
                         placeholder="latitude, longitude">
                     </div>
                   </div>
-                  
                   <div class="col-md-4">
                     <button type="submit" class="btn btn-primary" id="submit-button">Get Playlist!</button>
                 </div>
@@ -97,6 +94,8 @@
         <div class="col-md-4">
             <div id="trip-duration">(where the duration for the trip will appear)</div>
             <div id="playlist-duration">(where the duration for the playlist will appear)</div>
+            <div id="recent-artists">Recent Artists</div>
+           
         </div>
         
     </div>

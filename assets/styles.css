@@ -15,7 +15,7 @@ header,
 }
 
 .top-nav-collapse {
-  background-color: #78909c !important;
+  background-color: #ffc733 !important;
 }
 
 .navbar:not(.top-nav-collapse) {
@@ -24,14 +24,14 @@ header,
 
 @media (max-width: 991px) {
   .navbar:not(.top-nav-collapse) {
-    background: #78909c !important;
+    background: #ffc733 !important;
   }
 }
 
 h1 {
   letter-spacing: 8px;
-}
-
+  color: #ffc733;
+  font-family: h, Arial, Helvetica, sans-serif ;
 h5 {
   letter-spacing: 3px;
 }
@@ -40,3 +40,4 @@ h5 {
   border-top: 3px solid #fff;
   width: 80px;
 }
+
