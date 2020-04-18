@@ -2,6 +2,9 @@
 var input = {};
 
 var playlist = [];
+var artist;
+var urlIndex = 0;
+var recentArtists = [];
 var playlistDiv = document.getElementById("playlist-div");
 var tripDurationHTML = document.getElementById("trip-duration");
 var playlistDurationHTML = document.getElementById("playlist-duration");
@@ -36,6 +39,35 @@ placesEnd.on("change", function (suggestion) {
   input.destination = suggestion.suggestion.latlng;
 });
 
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyA2Kgq-Zt9JprHavAmXC6lkG_gQnvvBg-c",
+  authDomain: "coding-bootcamp-c2d63.firebaseapp.com",
+  databaseURL: "https://coding-bootcamp-c2d63.firebaseio.com",
+  projectId: "coding-bootcamp-c2d63",
+  storageBucket: "coding-bootcamp-c2d63.appspot.com",
+};
+
+firebase.initializeApp(config);
+
+// Create a variable to reference the database
+var database = firebase.database();
+
+// At the initial load and subsequent value changes, get a snapshot of the stored data.
+database.ref().once("value", function (snapshot) {
+  console.log(snapshot.val());
+
+  var recentArtistsHTML = document.getElementById("recent-artists");
+  recentArtists = snapshot.val().recentArtists;
+  recentArtists.length = 5;
+
+  for (var i = 0; i < recentArtists.length; i++) {
+    if (recentArtists[i]) {
+      recentArtistsHTML.textContent += recentArtists[i];
+    }
+  }
+});
+
 // Grab any existing data from local storage
 if (localStorage.getItem("playlist") !== null) {
   var tripDuration = JSON.parse(localStorage.getItem("trip-duration"));
@@ -66,7 +98,7 @@ function showData(tripDuration, playlistDuration) {
   }
 }
 
-// When Get Playlist buton is clicked, run the following function
+// When Get Playlist button is clicked, run the following function
 document
   .getElementById("submit-button")
   .addEventListener("click", async function (event) {
@@ -77,6 +109,15 @@ document
     if (!input.starting || !input.destination) {
       return;
     }
+
+    artist = document.getElementById("artist").value.split(",");
+    artist = artist.map((e) => e.trim());
+    recentArtists.unshift(...artist);
+    console.log(recentArtists);
+
+    database.ref().set({
+      recentArtists: recentArtists,
+    });
 
     // Create Mapbox query URL based on user input
     var mapBoxQueryURL =
@@ -96,9 +137,6 @@ document
     // Store trip duration from first route from API call response
     var tripDuration = mapResponse.routes[0].duration;
 
-    // Convert duration to minutes
-    var minutes = tripDuration / 60;
-
     playlist.length = 0;
 
     // Call function to make Deezer API call; await until API call is done and store response in songs variable
@@ -113,30 +151,45 @@ document
     localStorage.setItem("playlist-duration", JSON.stringify(playlistDuration));
   });
 
-async function getSongs(URL) {
-  // Create query URL for Deezer API call
-  var deezerQueryURL = URL;
-
-  // Make Deezer API call; await until API call is done and store response
-  var deezerResponse = await apiCall(deezerQueryURL);
-
+async function getSongs() {
   // Create array to hold song data
-  var songs = [];
 
-  // Loop through API response array and add applicable song data to new songs array
-  for (var i = 0; i < deezerResponse.data.length; i++) {
-    var e = deezerResponse.data[i];
-    songs.push({ title: e.title, artist: e.artist.name, duration: e.duration });
+  var songs = [];
+  for (var i = 0; i < artist.length; i++) {
+    // Create query URL for Deezer API call
+    // Make Deezer API call; await until API call is done and store response
+    var deezerResponse = await apiCall(
+      createDeezerUrl(urlIndex * 25, artist[i])
+    );
+
+    // Loop through API response array and add applicable song data to new songs array
+    for (var j = 0; j < deezerResponse.data.length; j++) {
+      var e = deezerResponse.data[j];
+      songs.push({
+        title: e.title,
+        artist: e.artist.name,
+        duration: e.duration,
+      });
+    }
   }
+  urlIndex++;
+  songs.sort(() => 0.5 - Math.random());
+  console.log("songs");
   return songs;
 }
 
 async function createPlaylist(tripDuration, playlistDuration) {
-  var songs = await getSongs(createDeezerUrl(playlist.length));
+  var songs = await getSongs();
+  if (songs.length < 1) {
+    console.log("not enough songs available");
+    return playlistDuration;
+  }
 
   for (let i = 0; i < songs.length && playlistDuration < tripDuration; i++) {
-    playlist.push(songs[i]);
-    playlistDuration += songs[i].duration;
+    if (!playlist.find((e) => e.title === songs[i].title)) {
+      playlist.push(songs[i]);
+      playlistDuration += songs[i].duration;
+    }
   }
   if (playlistDuration < tripDuration) {
     return createPlaylist(tripDuration, playlistDuration);
@@ -144,10 +197,8 @@ async function createPlaylist(tripDuration, playlistDuration) {
 
   return playlistDuration;
 }
-function createDeezerUrl(index) {
-  return (
-    "https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem&index=" + index
-  );
+function createDeezerUrl(index, artist) {
+  return `https://deezerdevs-deezer.p.rapidapi.com/search?q=${artist}&index=${index}`;
 }
 // API call function
 function apiCall(queryURL) {
