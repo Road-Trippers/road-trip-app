@@ -67,7 +67,7 @@ database.ref().once("value", function (snapshot) {
 });
 
 // Grab any existing data from local storage
-if (!localStorage.getItem("playlist")) {
+if (localStorage.getItem("playlist")) {
 	var tripDuration = JSON.parse(localStorage.getItem("trip-duration"));
 	var playlistDuration = JSON.parse(localStorage.getItem("playlist-duration"));
 	playlist = JSON.parse(localStorage.getItem("playlist"));
