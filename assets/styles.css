@@ -1,37 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
+
 html,
 body,
 header,
 .view {
   height: 100%;
+  font-family: Helvetica, sans-serif;
 }
-
-@media (max-width: 740px) {
-  html,
-  body,
-  header,
-  .view {
-    height: 100vh;
-  }
+.flex-container {
+  display: flex;
+}
+#showcase {
+  background-image: url(/assets/images/1.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+}
+#prof {
+  background-image: url(/assets/images/2.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+}
+#app {
+  background-image: url(/assets/images/3.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
 }
 
 .top-nav-collapse {
-  background-color: #ffc733 !important;
+  background-color: #78909c !important;
 }
 
 .navbar:not(.top-nav-collapse) {
   background: transparent !important;
 }
 
-@media (max-width: 991px) {
-  .navbar:not(.top-nav-collapse) {
-    background: #ffc733 !important;
-  }
-}
-
 h1 {
   letter-spacing: 8px;
-  color: #ffc733;
-  font-family: Arial, Helvetica, sans-serif ;
+}
+
 h5 {
   letter-spacing: 3px;
 }
@@ -40,4 +54,62 @@ h5 {
   border-top: 3px solid #fff;
   width: 80px;
 }
+#text-nav,
+#nav-h,
+#nav-a,
+#nav-t {
+  color: rgb(16, 21, 90);
+  background-color: wheat;
+}
+#text-nav:hover,
+#nav-h:hover,
+#nav-a:hover,
+#nav-t:hover {
+  color: rgb(189, 39, 12);
+}
+#T1 {
+  font-family: 'Knewave', cursive;
+  margin-top: 20vh;
+  margin-left: 60vh;
+  color: #ffc733;
+}
+#startingPoint,
+#endPoint {
+  color: #252216;
+  margin-top: auto;
+  margin-left: initial;
+  display: flexbox;
+}
+#submit-button {
+  margin-left: 50;
+}
+#KG,
+#AJ,
+#JZ,
+#AA {
+  color: rgb(245, 224, 39);
 
+  padding-left: 10vh;
+}
+#app-h1 {
+  color: rgb(245, 224, 39);
+  padding-left: 50vh;
+}
+.app-h2,
+.p {
+  color: rgb(245, 224, 39);
+  font-family: Helvetica, Arial, Helvetica, sans-serif;
+  padding-left: 10vh;
+  text-align: justify;
+  margin: 20px;
+}
+.form-group {
+  color: bisque;
+  text-emphasis: bold;
+}
+#h3{
+  margin-left: 15vh;
+}
+#playlist-div{
+  margin-left: 8vh;
+}
