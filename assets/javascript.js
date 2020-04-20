@@ -1,6 +1,5 @@
 // Create object to hold user input of latitude/longitude coordinates
 var input = {};
-
 var playlist = [];
 var artist;
 var urlIndex = 0;
@@ -98,9 +97,8 @@ function showData(tripDuration, playlistDuration) {
 	for (let index = 0; index < playlist.length; index++) {
 		const element = playlist[index];
 		var songDiv = document.createElement("p");
-		songDiv.textContent = `${element.title} by ${element.artist} - ${Math.floor(
-			element.duration / 60
-		)}:0${element.duration % 60}`;
+		var time = timeString(element.duration);
+		songDiv.textContent = `${element.title} by ${element.artist} - ${time}`;
 		playlistDiv.appendChild(songDiv);
 	}
 	playlistDiv.scrollIntoView();
@@ -121,13 +119,17 @@ document
 		}
 
 		artist = document.getElementById("artist").value.split(",");
-		artist = artist.map((e) => e.trim());
+		artist = artist.filter((e) => e !== "");
+		if (artist.length === 0) {
+			artist = [...recentArtists];
+		}
+		artist = artist.map((e) => e.trim().toUpperCase());
 		recentArtists.unshift(...artist);
 		recentArtists = recentArtists.filter((e, i, a) => a.indexOf(e) === i);
 		database.ref().set({
 			recentArtists: recentArtists,
 		});
-
+		artist = artist.filter((e) => e !== "");
 		// Create Mapbox query URL based on user input
 		var mapBoxQueryURL =
 			"https://api.mapbox.com/directions/v5/mapbox/driving/" +
@@ -232,4 +234,10 @@ function apiCall(queryURL) {
 		};
 		xhr.send();
 	});
+}
+function timeString(seconds) {
+	let min = Math.floor(seconds / 60).toString();
+	let sec = (seconds % 60).toString();
+	sec = sec.length === 1 ? "0" + sec : sec;
+	return min + ":" + sec;
 }

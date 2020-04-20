@@ -55,12 +55,12 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a id="nav-h" class="nav-link" href="/index.html"
+                <a id="nav-h" class="nav-link" href="index.html"
                   >Home <span class="sr-only">(current)</span></a
                 >
               </li>
               <li class="nav-item">
-                <a id="nav-t" class="nav-link" href="profile.html"
+                <a id="nav-t" class="nav-link" href="teamProfile.html"
                   >Team</a
                 >
               </li>
@@ -138,6 +138,12 @@
           placeholder="Preferred artist?"
         />
       </div>
+      <div id="recent-artists">
+        <h3> Recently Used:</h3>
+      </div>
+      <div class="alert alert-warning" id="alert" role="alert" hidden='true'>
+        Not enough artists to create playlist
+      </div>
     </div>
 
   </div>
@@ -154,22 +160,17 @@
 
 <div class="container" id="result-screen">
 
-      <div class="col-md-8">
-        <h3>Your Playlist!</h3>
+      <div class="col-md-8" id="playlist-div">
       </div>
-
       <div class="col-md-4">
         <div id="trip-duration">
-          (where the duration for the trip will appear)
         </div>
         <br />
         <div id="playlist-duration">
-          (where the duration for the playlist will appear)
         </div>
       </div>
 
       <div id="playlist-div">
-        (this is where the playlist that's generated will appear)
       </div>
 </div>
 
@@ -178,7 +179,7 @@
   <p class="footer">Makin' sure ya got tunes no matter where you're goin.</p>
   <img class="car-gif" src="assets/images/animated-gif (1).gif">
 </footer>
-
+<script src="https://cdn.jsdelivr.net/npm/places.js@1.18.1"></script>
       <script src="assets/javascript.js"></script>
     </div>
   </body>
