@@ -1,8 +1,9 @@
 * {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
-#trip-duration, #playlist-duration {
+#trip-duration,
+#playlist-duration {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: darkslategray;
   font-weight: 120;
@@ -11,7 +12,7 @@
 h1,
 #and,
 .app-h2,
-h3  {
+h3 {
   font-family: "Permanent Marker", sans-serif;
   color: #ffc733;
   font-size: 80px;
@@ -22,183 +23,189 @@ html,
 body,
 header,
 .view {
-	height: 90%;
-	font-family: Helvetica, sans-serif;
+  height: 90%;
+  font-family: Helvetica, sans-serif;
 }
 
 .flex-container {
-	display: flex;
-	text-align: center;
-	justify-content: space-evenly;
+  display: flex;
+  text-align: center;
+  justify-content: space-evenly;
 }
 
 .container {
-	display: flex;
+  display: flex;
 }
 
 #showcase {
-	background-image: url("images/karsten-wurth-rafblRbne3o-unsplash-resized3.jpg");
-	background-size: cover;
-	background-position: center;
-	height: 70vh;
-	text-align: center;
+  background-image: url("images/karsten-wurth-rafblRbne3o-unsplash-resized3.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 70vh;
+  text-align: center;
 }
 
 #prof {
-	background-image: url(./assets/images/2.jpg);
-	background-size: cover;
-	background-position: center;
-	height: 70vh;
-	margin-top: 120px;
+  background-image: url(./assets/images/2.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 70vh;
+  margin-top: 120px;
 }
 
 #app {
-	background-image: url(./assets/images/3.jpg);
-	background-size: cover;
-	background-position: center;
-	height: 70vh;
+  background-image: url(./assets/images/3.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 70vh;
 }
 
 .top-nav-collapse {
-	background-color: #78909c !important;
+  background-color: #78909c !important;
 }
 
 .navbar:not(.top-nav-collapse) {
-	background: #ffc733;
-	opacity: 0.8;
+  background: #ffc733;
+  opacity: 0.8;
 }
 
 h1 {
-	letter-spacing: 8px;
-	font-size: 86px;
+  letter-spacing: 8px;
+  font-size: 86px;
 }
 
 h5 {
-	letter-spacing: 3px;
+  letter-spacing: 3px;
 }
 
 #nav-img {
-	border-radius: 50%;
-	max-width: 136px;
-	height: auto;
-	justify-content: flex-end;
+  border-radius: 50%;
+  max-width: 136px;
+  height: auto;
+  justify-content: flex-end;
 }
 
 #app-img {
-	border-radius: 50%;
-	max-width: 500px;
-	margin: 0 auto;
-	display: inline;
-	margin-top: 48px;
+  border-radius: 50%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: inline;
+  /* margin-top: 48px; */
 }
 
 .app-p,
 footer {
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	color: darkslategray;
-	font-weight: 120;
-	margin: 0 auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: darkslategray;
+  font-weight: 120;
+  margin: 0 auto;
 }
 .objective,
 .solution {
-	max-width: 400px;
-	height: auto;
-	margin-top: 48px;
+  max-width: 400px;
+  height: auto;
+  margin-top: 48px;
 }
 .app-h2,
 .app-p {
-	max-width: 960px;
-	height: auto;
-	align-items: flex-end;
+  max-width: 960px;
+  height: auto;
+  align-items: flex-end;
 }
 #text-nav,
 #nav-h,
 #nav-a,
 #nav-t {
-	color: rgb(16, 21, 90);
+  color: rgb(16, 21, 90);
 }
 
 #text-nav:hover,
 #nav-h:hover,
 #nav-a:hover,
 #nav-t:hover {
-	color: white;
+  color: white;
 }
 #T1 {
-	margin-top: 20vh;
-	text-align: center;
-	color: #ffc733;
-	margin: 200px auto 48px auto;
+  margin-top: 20vh;
+  text-align: center;
+  color: #ffc733;
+  margin: 200px auto 48px auto;
 }
 #startingPoint,
 #endPoint {
-	margin-top: 32px;
-	margin-left: initial;
-	opacity: 0.8;
-	border-color: #ffc733;
+  margin-top: 32px;
+  margin-left: initial;
+  opacity: 0.8;
+  border-color: #ffc733;
 }
 
 #artist {
-	border-color: #ffc733;
+  border-color: #ffc733;
 }
 
 #submit-button {
-	background-image: url("images/vinyl_record.png");
-	background-size: cover;
-	width: 260px;
-	height: 260px;
-	color: #ffc733;
-	font-size: 48px;
-	font-family: "Permanent Marker", sans-serif;
-	text-shadow: 2px 2px #3b3935;
-	justify-content: center;
-	border-color: #ffc733;
-	border-radius: 50%;
-	border-width: 4px;
-	display: inline;
+  background-image: url("images/vinyl_record.png");
+  background-size: cover;
+  width: 260px;
+  height: 260px;
+  color: #ffc733;
+  font-size: 48px;
+  font-family: "Permanent Marker", sans-serif;
+  text-shadow: 2px 2px #3b3935;
+  justify-content: center;
+  border-color: #ffc733;
+  border-radius: 50%;
+  border-width: 4px;
+  margin-bottom: 15px;
+  /* display: inline; */
 }
 
 #KG,
 #AJ,
 #JZ,
 #AA {
-	padding-left: 10vh;
-	color: #ffc733;
-	font-size: 24px;
-	font-family: "Permanent Marker", sans-serif;
-	text-shadow: 2px 2px #3b3935;
+  padding-left: 10vh;
+  color: #ffc733;
+  font-size: 24px;
+  font-family: "Permanent Marker", sans-serif;
+  text-shadow: 2px 2px #3b3935;
 }
 
 .row {
-	display: flex;
+  display: flex;
 }
 
 .row-artist,
 .row-submit {
-	text-align: center;
+  text-align: center;
 }
+
+#recent-artists {
+  margin-bottom: 15px;
+}
+
 .car-gif {
-	max-width: 64px;
-	height: auto;
-	border-radius: 50%;
+  max-width: 64px;
+  height: auto;
+  border-radius: 50%;
 }
 .col-md-12 {
-	justify-self: center;
+  justify-self: center;
 }
 .form-group .form-control {
-	color: #3b3935;
-	text-emphasis: bold;
-	font-style: italic;
-	justify-content: center;
-	text-align: center;
+  color: #3b3935;
+  text-emphasis: bold;
+  font-style: italic;
+  justify-content: center;
+  text-align: center;
 }
 
 footer {
-	text-align: center;
-	margin-top: 132px;
-	background-color: #ffc733;
+  text-align: center;
+  margin-top: 132px;
+  background-color: #ffc733;
 }
 
 .footer {
-	display: inline;
+  display: inline;
 }
