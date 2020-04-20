@@ -2,14 +2,20 @@
 	margin: 0;
 	padding: 0;
 }
+#trip-duration, #playlist-duration {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: darkslategray;
+  font-weight: 120;
+}
 
 h1,
 #and,
-.app-h2 {
-	font-family: "Permanent Marker", sans-serif;
-	color: #ffc733;
-	font-size: 80px;
-	text-shadow: 3px 3px #3b3935;
+.app-h2,
+h3  {
+  font-family: "Permanent Marker", sans-serif;
+  color: #ffc733;
+  font-size: 80px;
+  text-shadow: 3px 3px #3b3935;
 }
 
 html,
